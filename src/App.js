@@ -5,18 +5,16 @@ import "./App.css";
 
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import Event from "./pages/Event";
-import Events from "./pages/Events";
 
 function App() {
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>GeekNight - Hyderabad</title>
+        <title>CovidGraph</title>
         <meta
           title="description"
-          content="An open forum for geeks to connect, discuss & learn latest ideas, technologies and trends in software development"
+          content="App to keep track of coronavirus infections"
         />
       </Helmet>
 
@@ -24,8 +22,6 @@ function App() {
         <Layout>
           <Router>
             <Home path="/" />
-            <Events path="/events" />
-            <Event path="/events/:eventId" />
           </Router>
         </Layout>
       </div>
