@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import './styles.scss';
+import Clusters from "../Clusters/Clusters";
 
 class HeaderTabs extends Component {
     constructor(props){
@@ -32,7 +33,7 @@ class HeaderTabs extends Component {
                     <h2>Any content 2</h2>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 3</h2>
+                    <Clusters />
                 </TabPanel>
                 </div>
             </Tabs>
