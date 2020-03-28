@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import "./App.css";
 import Home from "./pages/Home.jsx";
-
+import Clusters from "./components/Clusters/Clusters";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
       </Helmet>
         <div className="app-container">
           <Home />
+          <Clusters />
         </div>
     </>
   );
