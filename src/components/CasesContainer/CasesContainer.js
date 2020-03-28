@@ -1,16 +1,19 @@
 import React, {Fragment} from 'react';
 import './ClusterContainer.scss';
+import logo from "../../assets/plus.svg";
 
 const CasesContainer = props => {
 
     const {cases} = props;
 
     return (
-        <Fragment className="cases-container">
+        <div className="cases-container">
+            <label className="cases-label">CASES</label>
             <div>
-                <label className="cases-label">CASES</label>
+                <img src={logo}/>
+                <span className="cases-count-container">{cases.length} Cases</span>
             </div>
-        </Fragment>
+        </div>
     );
 };
 

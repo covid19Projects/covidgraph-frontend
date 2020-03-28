@@ -8,7 +8,7 @@ const ClusterBody = props => {
 
     return (
         <div className="cluster-body-container">
-            <div className="cases-container">
+            <div className="cases-info-container">
                 <CasesContainer cases={cases}/>
             </div>
             <div className="network-graph-container"/>
