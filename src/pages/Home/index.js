@@ -1,20 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "grommet";
 
 import NetworkGraph from "../../components/NetworkGraph";
-
-import {
-  createClusterCommand,
-  runCypherQuery,
-  createPersonWithExistingCluster,
-  createPersonRelatedToAnotherPerson,
-  createPersonAlongWithNewCluster,
-  editAPerson,
-  deleteAPerson,
-  getClusterData
-} from "../../db";
-
 import Clusters from "../../components/Clusters/Clusters";
 
 import {
@@ -27,6 +15,7 @@ import {
   deleteAPerson,
   getClusterData
 } from "../../db";
+import { mapResultToGraph } from "../../mappers";
 
 const graph = {
   nodes: [
@@ -49,18 +38,21 @@ const options = {
     color: "#000000",
     arrows: {
       to: {
-        enabled: false
+        enabled: true
       }
     },
     dashes: true
   },
   height: "500px",
   nodes: {
-    shape: "circle"
+    shape: "circle",
+    id: "name",
+    label: "name"
   }
 };
 export default () => {
-  const [data, setData] = useState(graph);
+  const [data, setData] = useState({ edges: [], nodes: [] });
+  const [rawData, setRawData] = useState(null);
 
   const addNode = () => {
     const newNodeId = uuidv4();

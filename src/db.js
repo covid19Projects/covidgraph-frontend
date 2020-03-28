@@ -19,15 +19,7 @@ export async function runCypherQuery(command) {
   const { session } = await getSession();
   try {
     const result = await session.run(command);
-    console.log(result);
-    const singleRecord = result.records[0];
-    var node = null;
-    if (singleRecord)
-    {
-      node = singleRecord.get(0);
-    }
-
-    return node;
+    return result;
   } finally {
     await session.close();
   }
@@ -57,47 +49,30 @@ export const createPersonRelatedToAnotherPerson = async (
   return runCypherQuery(command);
 };
 
-export const createPersonAlongWithNewCluster = async (
-  person,
-  cluster) => {
-    const command = `
+export const createPersonAlongWithNewCluster = async (person, cluster) => {
+  const command = `
       CREATE p = (newPerson:Person{name:"${person.name}",age:"${person.age}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:HAS_A]- (c:Cluster{name:"${cluster.name}"}) RETURN p
       `;
-    return runCypherQuery(command);
-}
+  return runCypherQuery(command);
+};
 
-export const editAPerson = async (
-  person
-  ) => {
-    const command = `
+export const editAPerson = async person => {
+  const command = `
       MATCH(p:Person{name:"${person.name}"}) SET p.age="${person.age}", p.status="${person.status}", p.location="${person.location}" p.Notes="${person.notes}" RETURN p
       `;
-    return runCypherQuery(command);
-}
+  return runCypherQuery(command);
+};
 
-export const deleteAPerson = async (
-  person
-  ) => {
-    const command = `
+export const deleteAPerson = async person => {
+  const command = `
       MATCH(p:Person{name:"${person.name}"}) DETACH DELETE p
       `;
-    return runCypherQuery(command);
-}
+  return runCypherQuery(command);
+};
 
-export const getClusterData = async (
-  clusterName
-  ) => {
-    const command = `
+export const getClusterData = async clusterName => {
+  const command = `
       MATCH p = (a {name:"${clusterName}"})-[*]->(b) RETURN p
       `;
-    return runCypherQuery(command);
-}
-
-export const getAllClusters = async (
-  clusterName
-  ) => {
-    const command = `
-      MATCH (c:Cluster) RETURN c.name
-      `;
-    return runCypherQuery(command);
-}
+  return runCypherQuery(command);
+};
