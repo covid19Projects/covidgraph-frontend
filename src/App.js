@@ -1,10 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Router } from "@reach/router";
 import "./App.css";
+import Home from "./pages/Home.jsx";
 
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
 
 function App() {
   return (
@@ -17,14 +15,9 @@ function App() {
           content="App to keep track of coronavirus infections"
         />
       </Helmet>
-
-      <div className="app-container">
-        <Layout>
-          <Router>
-            <Home path="/" />
-          </Router>
-        </Layout>
-      </div>
+        <div className="app-container">
+          <Home />
+        </div>
     </>
   );
 }
