@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Button } from "grommet";
 
 import NetworkGraph from "../../components/NetworkGraph";
+import Clusters from "../../components/Clusters/Clusters";
 
 import {
   createClusterCommand,
@@ -81,27 +82,20 @@ export default () => {
   const onCreateCluster = async () =>
     runCypherQuery(createClusterCommand("Delhi"));
 
-  const onCreatePersonWithExistingCluster = async () => {
-    await createPersonWithExistingCluster("Delhi", {
-      name: "P6",
+  const onCreatePersonWithExistingCluster = () =>
+    createPersonWithExistingCluster("Delhi", {
+      name: "P1",
       age: 20,
       status: "Positive",
       location: "Hospitalized",
       notes: "Returned from italy"
     });
-    getClusterData("Delhi")
-      .then(rawData => {
-        setData(mapResultToGraph(rawData));
-        console.log(mapResultToGraph(rawData));
-      })
-      .catch(console.error);
-  };
 
   const onCreatePersonRelatedToAnotherPerson = () =>
     createPersonRelatedToAnotherPerson(
-      { name: "P4" },
+      { name: "P1" },
       {
-        name: "P5",
+        name: "P2",
         age: 20,
         status: "Positive",
         location: "Hospitalized",
@@ -133,14 +127,7 @@ export default () => {
       name: "P2"
     });
 
-  useEffect(() => {
-    getClusterData("Delhi")
-      .then(rawData => {
-        setData(mapResultToGraph(rawData));
-        console.log(mapResultToGraph(rawData));
-      })
-      .catch(console.error);
-  }, []);
+  const onGetClusterData = () => console.log(getClusterData("Delhi"));
 
   return (
     <div className="homepage">
@@ -156,7 +143,9 @@ export default () => {
       </Button>
       <Button onClick={onEditAPerson}>Edit P1</Button>
       <Button onClick={onDeleteAPerson}>Delete P2</Button>
+      <Button onClick={onGetClusterData}>Get Delhi Data</Button>
       <NetworkGraph data={data} options={options} />
+      <Clusters />
     </div>
   );
 };
