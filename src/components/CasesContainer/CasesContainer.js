@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import './ClusterContainer.scss';
 import logo from "../../assets/plus.svg";
 
@@ -10,7 +10,7 @@ const CasesContainer = props => {
         <div className="cases-container">
             <label className="cases-label">CASES</label>
             <div>
-                <img src={logo}/>
+                <img src={logo} alt=""/>
                 <span className="cases-count-container">{cases.length} Cases</span>
             </div>
         </div>

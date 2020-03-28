@@ -19,11 +19,9 @@ function App() {
 
       <Grommet>
         <div className="app-container">
-          <Layout>
             <Router>
               <Home path="/" />
             </Router>
-          </Layout>
         </div>
       </Grommet>
     </>

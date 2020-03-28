@@ -13,7 +13,7 @@ class Header extends Component {
      static getLogo() {
         return (
          <div className="header">
-            <img className="logo" src={logo} />
+            <img className="logo" src={logo} alt=""/>
             <p className="name">Covid 19</p>
         </div>)
     }
