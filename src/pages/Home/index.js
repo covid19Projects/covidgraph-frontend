@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "grommet";
 
@@ -14,6 +14,7 @@ import {
   deleteAPerson,
   getClusterData
 } from "../../db";
+import { mapResultToGraph } from "../../mappers";
 
 const graph = {
   nodes: [
@@ -36,18 +37,21 @@ const options = {
     color: "#000000",
     arrows: {
       to: {
-        enabled: false
+        enabled: true
       }
     },
     dashes: true
   },
   height: "500px",
   nodes: {
-    shape: "circle"
+    shape: "circle",
+    id: "name",
+    label: "name"
   }
 };
 export default () => {
-  const [data, setData] = useState(graph);
+  const [data, setData] = useState({ edges: [], nodes: [] });
+  const [rawData, setRawData] = useState(null);
 
   const addNode = () => {
     const newNodeId = uuidv4();
@@ -77,20 +81,27 @@ export default () => {
   const onCreateCluster = async () =>
     runCypherQuery(createClusterCommand("Delhi"));
 
-  const onCreatePersonWithExistingCluster = () =>
-    createPersonWithExistingCluster("Delhi", {
-      name: "P1",
+  const onCreatePersonWithExistingCluster = async () => {
+    await createPersonWithExistingCluster("Delhi", {
+      name: "P6",
       age: 20,
       status: "Positive",
       location: "Hospitalized",
       notes: "Returned from italy"
     });
+    getClusterData("Delhi")
+      .then(rawData => {
+        setData(mapResultToGraph(rawData));
+        console.log(mapResultToGraph(rawData));
+      })
+      .catch(console.error);
+  };
 
   const onCreatePersonRelatedToAnotherPerson = () =>
     createPersonRelatedToAnotherPerson(
-      { name: "P1" },
+      { name: "P4" },
       {
-        name: "P2",
+        name: "P5",
         age: 20,
         status: "Positive",
         location: "Hospitalized",
@@ -107,27 +118,29 @@ export default () => {
         location: "Hospitalized",
         notes: "Returned from USA"
       },
-      { name: "Andhra Pradesh"}
+      { name: "Andhra Pradesh" }
     );
 
   const onEditAPerson = () =>
-    editAPerson(
-      {
-        name: "P1",
-        age: 15,
-        notes: "Young suspect"
-      }
-    );
+    editAPerson({
+      name: "P1",
+      age: 15,
+      notes: "Young suspect"
+    });
 
   const onDeleteAPerson = () =>
-    deleteAPerson(
-      {
-        name: "P2"
-      }
-    );
+    deleteAPerson({
+      name: "P2"
+    });
 
-  const onGetClusterData = () =>
-    console.log(getClusterData("Delhi"));
+  useEffect(() => {
+    getClusterData("Delhi")
+      .then(rawData => {
+        setData(mapResultToGraph(rawData));
+        console.log(mapResultToGraph(rawData));
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="homepage">
@@ -139,11 +152,10 @@ export default () => {
         Create p2 related to p1
       </Button>
       <Button onClick={onCreatePersonAlongWithNewCluster}>
-      Create person with new cluster
+        Create person with new cluster
       </Button>
       <Button onClick={onEditAPerson}>Edit P1</Button>
       <Button onClick={onDeleteAPerson}>Delete P2</Button>
-      <Button onClick={onGetClusterData}>Get Delhi Data</Button>
       <NetworkGraph data={data} options={options} />
     </div>
   );
