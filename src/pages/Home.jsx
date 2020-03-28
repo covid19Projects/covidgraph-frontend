@@ -1,8 +1,11 @@
 import React, {Component} from "react";
+import Header from "../components/Header.jsx";
 
 class Home extends Component {
     render() {
-        return <h1>Hello, Welcome</h1>;
+        return (
+            <Header/>
+        );
     }
 }
 export default Home;
