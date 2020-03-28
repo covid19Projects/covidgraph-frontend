@@ -1,0 +1,39 @@
+.cluster-header {
+    display: flex;
+    justify-content: space-between;
+
+    .controls {
+        display: flex;
+        height: min-content;
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 5px;
+            border: solid 1px #babfc7;
+            margin-left: 10px;
+            margin-right: 0px;
+            .image {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        .icon:last-child {
+            width: 150px;
+            background-color: #686bfc;
+            font-size: 18px;
+            color: #ffffff;
+        }
+    }
+    .description {
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .body {
+            font-size: 16px;
+
+        }
+    }
+}

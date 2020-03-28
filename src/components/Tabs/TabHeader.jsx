@@ -3,6 +3,7 @@ import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import '../Tabs/TabHeader.scss';
 import Clusters from "../Clusters/Clusters";
+import ClusterHead from "../Clusters/ClusterHead/ClusterHead";
 
 class TabHeader extends Component {
     render() {
@@ -29,6 +30,7 @@ class TabHeader extends Component {
                         </TabPanel>
                         <TabPanel>
                             <div className="clusters-tab-panel">
+                                <ClusterHead/>
                                 <Clusters/>
                             </div>
                         </TabPanel>

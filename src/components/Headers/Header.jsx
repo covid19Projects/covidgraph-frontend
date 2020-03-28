@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import logo from "../../resources/covid-logo.svg";
+import logo from "../../assets/covid-logo.svg";
 import 'react-tabs/style/react-tabs.css';
 import './Headers.scss';
 import TabHeader from "../Tabs/TabHeader.jsx";
