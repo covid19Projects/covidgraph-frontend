@@ -83,3 +83,12 @@ export const deleteAPerson = async (
       `;
     return runCypherQuery(command);
 }
+
+export const getClusterData = async (
+  clusterName
+  ) => {
+    const command = `
+      MATCH p = (a {name:"${clusterName}"})-[*]->(b) RETURN p
+      `;
+    return runCypherQuery(command);
+}
