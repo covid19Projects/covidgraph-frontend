@@ -17,7 +17,8 @@
     "react-helmet": "^5.2.1",
     "react-scripts": "3.4.0",
     "uuid": "^7.0.2",
-    "vis-network": "^7.4.0"
+    "vis-network": "^7.4.0",
+    "neo4j-driver": "^4.0.1"
   },
   "scripts": {
     "publish": "yarn test && standard-version",
