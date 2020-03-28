@@ -11,7 +11,8 @@ import {
   createPersonRelatedToAnotherPerson,
   createPersonAlongWithNewCluster,
   editAPerson,
-  deleteAPerson
+  deleteAPerson,
+  getClusterData
 } from "../../db";
 
 const graph = {
@@ -125,6 +126,9 @@ export default () => {
       }
     );
 
+  const onGetClusterData = () =>
+    console.log(getClusterData("Delhi"));
+
   return (
     <div className="homepage">
       <h1>Home</h1>
@@ -139,6 +143,7 @@ export default () => {
       </Button>
       <Button onClick={onEditAPerson}>Edit P1</Button>
       <Button onClick={onDeleteAPerson}>Delete P2</Button>
+      <Button onClick={onGetClusterData}>Get Delhi Data</Button>
       <NetworkGraph data={data} options={options} />
     </div>
   );
