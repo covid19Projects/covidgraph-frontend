@@ -1,5 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Router } from "@reach/router";
+import { Grommet } from "grommet";
 import "./App.css";
 import Home from "./pages/Home.jsx";
 
@@ -14,10 +16,16 @@ function App() {
           content="App to keep track of coronavirus infections"
         />
       </Helmet>
-        <div className="app-container">
-          <Home />
 
+      <Grommet>
+        <div className="app-container">
+          <Layout>
+            <Router>
+              <Home path="/" />
+            </Router>
+          </Layout>
         </div>
+      </Grommet>
     </>
   );
 }
