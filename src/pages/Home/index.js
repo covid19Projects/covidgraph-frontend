@@ -8,7 +8,10 @@ import {
   createClusterCommand,
   runCypherQuery,
   createPersonWithExistingCluster,
-  createPersonRelatedToAnotherPerson
+  createPersonRelatedToAnotherPerson,
+  createPersonAlongWithNewCluster,
+  editAPerson,
+  deleteAPerson
 } from "../../db";
 
 const graph = {
@@ -94,6 +97,34 @@ export default () => {
       }
     );
 
+  const onCreatePersonAlongWithNewCluster = () =>
+    createPersonAlongWithNewCluster(
+      {
+        name: "P3",
+        age: 24,
+        status: "Positive",
+        location: "Hospitalized",
+        notes: "Returned from USA"
+      },
+      { name: "Andhra Pradesh"}
+    );
+
+  const onEditAPerson = () =>
+    editAPerson(
+      {
+        name: "P1",
+        age: 15,
+        notes: "Young suspect"
+      }
+    );
+
+  const onDeleteAPerson = () =>
+    deleteAPerson(
+      {
+        name: "P2"
+      }
+    );
+
   return (
     <div className="homepage">
       <h1>Home</h1>
@@ -103,6 +134,11 @@ export default () => {
       <Button onClick={onCreatePersonRelatedToAnotherPerson}>
         Create p2 related to p1
       </Button>
+      <Button onClick={onCreatePersonAlongWithNewCluster}>
+      Create person with new cluster
+      </Button>
+      <Button onClick={onEditAPerson}>Edit P1</Button>
+      <Button onClick={onDeleteAPerson}>Delete P2</Button>
       <NetworkGraph data={data} options={options} />
     </div>
   );
