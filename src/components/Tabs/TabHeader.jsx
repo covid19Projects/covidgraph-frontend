@@ -5,10 +5,6 @@ import '../Tabs/TabHeader.scss';
 import Clusters from "../Clusters/Clusters";
 
 class TabHeader extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className="tabs">
@@ -18,11 +14,11 @@ class TabHeader extends Component {
                             <Tab>Overview</Tab>
                             <Tab>Emergency</Tab>
                             <Tab>Clusters</Tab>
-                            <div className="helpline">
-                                <p>Central Helpline Numbers:</p>
-                                <p>987654676</p>
-                            </div>
                         </TabList>
+                        <div className="helpline">
+                            <p>Central Helpline Numbers:</p>
+                            <p>987654676</p>
+                        </div>
                     </div>
                     <div className="tab-panels">
                         <TabPanel>
