@@ -9,16 +9,19 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bulma": "^0.8.0",
+    "grommet": "^2.11.3",
     "lodash": "^4.17.15",
+    "neo4j-driver": "^4.0.2",
     "node-sass": "^4.13.1",
+    "polished": "^3.5.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-graph-vis": "^1.0.5",
     "react-helmet": "^5.2.1",
     "react-scripts": "3.4.0",
+    "styled-components": "^5.0.1",
     "uuid": "^7.0.2",
-    "vis-network": "^7.4.0",
-    "neo4j-driver": "^4.0.1"
+    "vis-network": "^7.4.0"
   },
   "scripts": {
     "publish": "yarn test && standard-version",

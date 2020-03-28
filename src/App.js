@@ -1,6 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Router } from "@reach/router";
+import { Grommet } from "grommet";
 import "./App.css";
 
 import Layout from "./components/Layout";
@@ -18,13 +19,15 @@ function App() {
         />
       </Helmet>
 
-      <div className="app-container">
-        <Layout>
-          <Router>
-            <Home path="/" />
-          </Router>
-        </Layout>
-      </div>
+      <Grommet>
+        <div className="app-container">
+          <Layout>
+            <Router>
+              <Home path="/" />
+            </Router>
+          </Layout>
+        </div>
+      </Grommet>
     </>
   );
 }
