@@ -15,6 +15,19 @@ import {
   getClusterData
 } from "../../db";
 
+import Clusters from "../../components/Clusters/Clusters";
+
+import {
+  createClusterCommand,
+  runCypherQuery,
+  createPersonWithExistingCluster,
+  createPersonRelatedToAnotherPerson,
+  createPersonAlongWithNewCluster,
+  editAPerson,
+  deleteAPerson,
+  getClusterData
+} from "../../db";
+
 const graph = {
   nodes: [
     { id: "1", label: "Node 1", title: "node 1 tootip text" },
@@ -145,6 +158,7 @@ export default () => {
       <Button onClick={onDeleteAPerson}>Delete P2</Button>
       <Button onClick={onGetClusterData}>Get Delhi Data</Button>
       <NetworkGraph data={data} options={options} />
+      <Clusters/>
     </div>
   );
 };

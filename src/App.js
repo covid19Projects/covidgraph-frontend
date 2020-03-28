@@ -3,9 +3,7 @@ import { Helmet } from "react-helmet";
 import { Router } from "@reach/router";
 import { Grommet } from "grommet";
 import "./App.css";
-
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
+import Home from "./pages/Home.jsx";
 
 function App() {
   return (
@@ -21,11 +19,9 @@ function App() {
 
       <Grommet>
         <div className="app-container">
-          <Layout>
             <Router>
               <Home path="/" />
             </Router>
-          </Layout>
         </div>
       </Grommet>
     </>
