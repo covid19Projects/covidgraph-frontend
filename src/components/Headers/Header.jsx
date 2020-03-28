@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import logo from "../../resources/covid-logo.svg";
 import 'react-tabs/style/react-tabs.css';
-import './styles.scss';
-import HeaderTabs from "./HeaderTabs.jsx";
+import './Headers.scss';
+import TabHeader from "../Tabs/TabHeader.jsx";
 
 class Header extends Component {
      constructor(props){
@@ -12,7 +12,7 @@ class Header extends Component {
 
      static getLogo() {
         return (
-         <div className="header-1">
+         <div className="header">
             <img className="logo" src={logo} />
             <p className="name">Covid 19</p>
         </div>)
@@ -20,9 +20,9 @@ class Header extends Component {
 
     render(){
         return (
-            <div className="header">
+            <div>
                 {Header.getLogo()}
-                <HeaderTabs />
+                <TabHeader />
             </div>
         )
     }
