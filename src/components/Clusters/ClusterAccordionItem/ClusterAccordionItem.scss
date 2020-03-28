@@ -1,0 +1,26 @@
+.cluster-accordion-item {
+  border-radius: 4px;
+  border: solid 1px #cbcbd6;
+  background-color: #fdfdff;
+  margin: 20px 0;
+
+  .accordion__heading {
+    padding: 15px;
+    position: relative;
+    user-select: none;
+
+    .accordion__button {
+
+      &:focus {
+        outline: none;
+      }
+
+      &:after {
+        content: url('../../../assets/path.svg');
+        position: absolute;
+        top: 15px;
+        right: 20px;
+      }
+    }
+  }
+}

@@ -29,7 +29,10 @@ export const createClusterCommand = name => `
   CREATE (a:Cluster {name: "${name}"}) RETURN a
 `;
 
-export const createPersonWithExistingCluster = async (clusterName, person) => {
+export const createPersonWithExistingCluster = async (
+  clusterName,
+  person
+) => {
   const command = `
     MATCH(c:Cluster) WHERE c.name="${clusterName}" CREATE (newPerson:Person{name:"${person.name}",age:"${person.age}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:BELONGS_TO]- (c) RETURN newPerson
   `;
