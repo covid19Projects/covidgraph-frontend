@@ -1,5 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To Run this project
+
+1. Download and install neo4j desktop from https://neo4j.com/download/
+2. Open Neo4j desktop application and Create a new Project
+3. Add Graph -> Create a Local Graph -> Enter the Graph name -> Set password -> Create
+4. Start the Graph
+5. Open covidgraph-frontend/src/db.js/ file and provide the Graph password
+6. In the covidgraph-frontend folder do - yarn install followed by yarn start
+7. The application gets started at http://localhost:3000/
+
 ## Available Scripts
 
 In the project directory, you can run:
