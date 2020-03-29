@@ -4,6 +4,7 @@ import { Router } from "@reach/router";
 import { Grommet } from "grommet";
 import "./App.css";
 import Home from "./pages/Home.jsx";
+import Layout from "./components/Layout/";
 
 function App() {
   return (
