@@ -140,7 +140,7 @@ class CreateSuspectForm extends Component {
 {/*                             </FormField> */}
                             <FormField label={"Status"} className="case-create-dialog-label">
                                 <Select
-                                    options={["Tracked", "Not Tracked","Being Tracked"]}
+                                    options={["UnTracked", "Tracked","Tested", "Positive", "Negative", "Cured", "Dead"]}
                                     onChange={this.setStatus}
                                     required
                                     className="status"
@@ -149,7 +149,7 @@ class CreateSuspectForm extends Component {
                         </div>
                         <FormField label={"Location"} className="mt-15 case-create-dialog-label">
                             <Select
-                                options={["Confirmed", "Quarantined"]}
+                                options={["Home Isolation", "Hospitalized"]}
                                 onChange={this.setLocation}
                                 required
                                 className="location"
@@ -181,12 +181,10 @@ class CreateSuspectForm extends Component {
                                 id="notesInput"/>
                         </FormField>
                         <div className="case-create-dialog-footer">
+                            <Button onClick={this.props.onClose} label={"Cancel"} className="cancel-button"/>
                             <Button onClick={this.createSuspect} className="add-button"
                                 label={"Add"}/>
-                            <Button
-                                onClick={this.props.onClose}
-                                label={"Cancel"}
-                            />
+
                         </div>
 
 
