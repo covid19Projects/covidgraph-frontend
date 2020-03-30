@@ -10,7 +10,7 @@ import unTrackedImage from "../../../assets/Untracked.svg";
 import testedImage from "../../../assets/Tested.svg";
 
 const ClusterBody = props => {
-  const { cluster } = props;
+  const { cluster, toggleSuspectForm } = props;
 
   const hasData = cluster.cases.length;
   const graph = {
@@ -72,6 +72,7 @@ const ClusterBody = props => {
     <div className="cluster-body-container">
       <div className="cases-info-container">
         <CasesContainer
+          toggleSuspectForm={toggleSuspectForm}
           cases={cluster.cases.filter(n => n.id !== cluster.name)}
         />
       </div>

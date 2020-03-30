@@ -3,9 +3,10 @@ import "./CasesContainer.scss";
 import plus from "../../assets/plus.svg";
 import CasesSearch from "../CasesSearch/CasesSearch";
 import CasesListContainer from "../CasesListContainer/CasesListContainer";
+import { Button } from "grommet";
 
 const CasesContainer = props => {
-  const { cases } = props;
+  const { cases, toggleSuspectForm } = props;
 
   const [casesDetails, setCasesDetails] = useState(null);
 
@@ -45,7 +46,9 @@ const CasesContainer = props => {
       <div className="cases-header">
         <label className="cases-label">CASES</label>
         <div>
-          <img src={plus} alt="" />
+          <Button onClick={toggleSuspectForm}>
+            <img src={plus} alt="" />
+          </Button>
           <span className="cases-count-container">
             {cases && cases.length} Cases
           </span>
