@@ -181,12 +181,10 @@ class CreateSuspectForm extends Component {
                                 id="notesInput"/>
                         </FormField>
                         <div className="case-create-dialog-footer">
+                            <Button onClick={this.props.onClose} label={"Cancel"} className="cancel-button"/>
                             <Button onClick={this.createSuspect} className="add-button"
                                 label={"Add"}/>
-                            <Button
-                                onClick={this.props.onClose}
-                                label={"Cancel"}
-                            />
+
                         </div>
 
 
