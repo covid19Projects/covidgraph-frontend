@@ -14,7 +14,6 @@ class ClusterHead extends Component {
             <div className="cluster-header">
                 <div className="description">
                     <p className="title">Clusters</p>
-                    <p className="body">Lorem Ipsum is simply dummy text.</p>
                 </div>
                 <div className="controls">
                     <button className="icon"><img className="image" src={search}/></button>

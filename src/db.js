@@ -34,7 +34,7 @@ export const createPersonWithExistingCluster = async (
   person
 ) => {
   const command = `
-    MATCH(c:Cluster) WHERE c.name="${clusterName}" CREATE (newPerson:Person{name:"${person.name}",age:"${person.age}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:BELONGS_TO]- (c) RETURN newPerson
+    MATCH(c:Cluster) WHERE c.name="${clusterName}" CREATE (newPerson:Person{id:"${person.id}",name:"${person.name}",age:"${person.age}",gender:"${person.gender}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:BELONGS_TO]- (c) RETURN newPerson
   `;
   return runCypherQuery(command);
 };
@@ -44,28 +44,28 @@ export const createPersonRelatedToAnotherPerson = async (
   person
 ) => {
   const command = `
-    MATCH(p:Person) WHERE p.name="${existingPerson.name}" CREATE (newPerson:Person{name:"${person.name}",age:"${person.age}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:IS_RELATED_TO]- (p) RETURN newPerson
+    MATCH(p:Person) WHERE p.id="${existingPerson.id}" CREATE (newPerson:Person{id:"${person.id}",name:"${person.name}",age:"${person.age}",gender:"${person.gender}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:IS_RELATED_TO]- (p) RETURN newPerson
   `;
   return runCypherQuery(command);
 };
 
 export const createPersonAlongWithNewCluster = async (person, cluster) => {
   const command = `
-      CREATE p = (newPerson:Person{name:"${person.name}",age:"${person.age}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:HAS_A]- (c:Cluster{name:"${cluster.name}"}) RETURN p
+      CREATE p = (newPerson:Person{id:"${person.id}",name:"${person.name}",age:"${person.age}",gender:"${person.gender}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:HAS_A]- (c:Cluster{name:"${cluster.name}"}) RETURN p
       `;
   return runCypherQuery(command);
 };
 
 export const editAPerson = async person => {
   const command = `
-      MATCH(p:Person{name:"${person.name}"}) SET p.age="${person.age}", p.status="${person.status}", p.location="${person.location}" p.Notes="${person.notes}" RETURN p
+      MATCH(p:Person{id:"${person.id}"}) SET p.age="${person.age}", p.status="${person.status}", p.location="${person.location}" p.Notes="${person.notes}" RETURN p
       `;
   return runCypherQuery(command);
 };
 
 export const deleteAPerson = async person => {
   const command = `
-      MATCH(p:Person{name:"${person.name}"}) DETACH DELETE p
+      MATCH(p:Person{id:"${person.id}"}) DETACH DELETE p
       `;
   return runCypherQuery(command);
 };
