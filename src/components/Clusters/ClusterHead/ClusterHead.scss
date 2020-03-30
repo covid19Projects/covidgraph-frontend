@@ -5,6 +5,8 @@
     .controls {
         display: flex;
         height: min-content;
+        float: right;
+        margin-left: 70%;
 
         .icon {
             width: 48px;
@@ -19,6 +21,7 @@
             }
         }
         .icon:last-child {
+            display: flex;
             width: 150px;
             background-color: #686bfc;
             font-size: 18px;
