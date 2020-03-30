@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Box, Button, Form, FormField, Header, Layer, Select, TextInput} from "grommet";
 import {createPersonWithExistingCluster} from "../../db.js"
+import "./CreateSuspectForm.scss"
 
 class CreateSuspectForm extends Component {
     setCluster = (cluster) => {
@@ -79,9 +80,9 @@ class CreateSuspectForm extends Component {
                      pad="medium"
                      onSubmit={() => {
                      }}>
-                    <Form>
-                        <Header size={"medium"}>Add Suspect</Header>
-                        <FormField label={"Case ID"}>
+                    <Form className="case-creation-dialog">
+                        <Header size={"medium"} className="add-suspect-title">Add Suspect</Header>
+                        <FormField label={"Case ID"} className="mt-15 case-create-dialog-label">
                             <TextInput
                                 required
                                 onChange={this.setCaseID}
@@ -89,7 +90,7 @@ class CreateSuspectForm extends Component {
                                 id="caseId"
                             />
                         </FormField>
-                        <FormField label={"Name"}>
+                        <FormField label={"Name"} className="mt-15 case-create-dialog-label">
                             <TextInput
                                 required
                                 onChange={this.setName}
@@ -97,8 +98,8 @@ class CreateSuspectForm extends Component {
                                 id="name"
                             />
                         </FormField>
-                        <div>
-                            <FormField label={"Cluster"}>
+                        <div className="inline mt-15">
+                            <FormField label={"Cluster"} className="case-create-dialog-label">
                                 <Select
                                     placeholder="Select"
                                     required
@@ -107,7 +108,7 @@ class CreateSuspectForm extends Component {
                                     className="clusterInput"
                                     id="clusterName"/>
                             </FormField>
-                            <FormField label={"Contacted With"}>
+                            <FormField label={"Contacted With"} className="case-create-dialog-label">
                                 <Select
                                     options={[]}
                                     required
@@ -120,15 +121,15 @@ class CreateSuspectForm extends Component {
                             </FormField>
                         </div>
                         <br/>
-                        <div>
-                            <FormField label={"Age"}>
+                        <div className="inline mt-15">
+                            <FormField label={"Age"} className="case-create-dialog-label">
                                 <TextInput
                                     className="age"
                                     required
                                     onChange={this.setSuspectAge}
                                     id="ageInput"/>
                             </FormField>
-{/*                             <FormField label={"Gender"}> */}
+{/*                             <FormField label={"Gender"}> * case-create-dialog-label/}
 {/*                                 <Select */}
 {/*                                     options={["Male", "Female", "Transgender","Prefer Not To Mention"]} */}
 {/*                                     onChange={this.setGender} */}
@@ -136,7 +137,7 @@ class CreateSuspectForm extends Component {
 {/*                                     required */}
 {/*                                     id="genderInput"/> */}
 {/*                             </FormField> */}
-                            <FormField label={"Status"}>
+                            <FormField label={"Status"} className="case-create-dialog-label">
                                 <Select
                                     options={["Tracked", "Not Tracked","Being Tracked"]}
                                     onChange={this.setStatus}
@@ -145,17 +146,16 @@ class CreateSuspectForm extends Component {
                                     id="statusInput"/>
                             </FormField>
                         </div>
-                        <FormField label={"Location"}>
+                        <FormField label={"Location"} className="mt-15 case-create-dialog-label">
                             <Select
                                 options={["Confirmed", "Quarantined"]}
                                 onChange={this.setLocation}
                                 required
                                 className="location"
                                 id="location"/>
-                            <br/>
                         </FormField>
-                        <div>
-                            <FormField label={"Government ID Type"}>
+                        <div className="inline mt-15">
+                            <FormField label={"Government ID Type"} className="case-create-dialog-label">
                                 <Select
                                     options={["PAN", "Aadhaar","Ration Card"]}
                                     onChange={this.setGovernmentIdType}
@@ -163,7 +163,7 @@ class CreateSuspectForm extends Component {
                                     className="governmentIdtype"
                                     id="idType"/>
                             </FormField>
-                            <FormField label={"Government ID"}>
+                            <FormField label={"Government ID"} className="case-create-dialog-label">
                                 <TextInput
                                     onChange={this.setGovernmentId}
                                     required
@@ -171,7 +171,7 @@ class CreateSuspectForm extends Component {
                                     id="idInput"/>
                             </FormField>
                         </div>
-                        <FormField label={"Notes"}>
+                        <FormField label={"Notes"} className="mt-15 case-create-dialog-label">
                             <TextInput
                                 required
                                 onChange={this.setNotes}
@@ -179,9 +179,10 @@ class CreateSuspectForm extends Component {
                                 className="notes"
                                 id="notesInput"/>
                         </FormField>
-                        <Button
-                            onClick={this.createSuspect}
-                            label={"Submit"}/>
+                        <div className="case-create-dialog-footer">
+                            <Button onClick={this.createSuspect} className="add-button"
+                                label={"Add"}/>
+                        </div>
                     </Form>
                 </Box>
             </Layer>

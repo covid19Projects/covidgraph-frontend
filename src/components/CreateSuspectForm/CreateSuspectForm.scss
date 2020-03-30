@@ -1,0 +1,43 @@
+.case-creation-dialog {
+    padding: 20px 75px;
+
+    .add-suspect-title {
+        width: 143px;
+        height: 33px;
+        font-family: OpenSans;
+        font-size: 24px;
+        font-weight: 600;
+        color: #2c2c30;
+    }
+
+    .case-create-dialog-label .enbIRN {
+        height: 22px;
+        font-family: OpenSans;
+        font-size: 16px;
+        font-weight: 600;
+        color: #2d3033;
+    }
+
+    .case-create-dialog-footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 40px;
+
+        .add-button {
+            width: 120px;
+            height: 40px;
+            border-radius: 5px;
+            background-color: #20a9d4;
+            border: none;
+        }
+    }
+}
+
+.inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
