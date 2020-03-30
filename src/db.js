@@ -31,7 +31,7 @@ export const createClusterCommand = name => `
 
 export const createPersonWithExistingCluster = async (clusterName, person) => {
   const command = `
-    MATCH(c:Cluster) WHERE c.name="${clusterName}" CREATE (newPerson:Person{id:"${person.id}",name:"${person.name}",age:"${person.age}",gender:"${person.gender}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:BELONGS_TO]- (c) RETURN newPerson
+    MATCH(c:Cluster) WHERE c.name="${clusterName}" CREATE (newPerson:Person{id:"${person.id}",name:"${person.name}",age:"${person.age}",status:"${person.status}",location:"${person.location}", Notes:"${person.notes}"}) <-[:BELONGS_TO]- (c) RETURN newPerson
   `;
   return runCypherQuery(command);
 };

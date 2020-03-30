@@ -14,7 +14,7 @@ import {
   getAllClustersData
 } from "./../../db";
 import ClusterHead from "./ClusterHead/ClusterHead";
-import CreateSuspectForm from "../CreateSuspectForm/CreateSuspectForm";
+import SuspectForm from "../SuspectForm/SuspectForm";
 
 import { mapResultToGraph } from "./../../mappers";
 
@@ -98,6 +98,36 @@ const Clusters = props => {
       .catch(console.error);
   }, []);
 
+  const addPersonToCluster = (clusterName, person) => {
+    const newClusters = clusters.map(cluster => {
+      if (cluster.name === clusterName) {
+        return {
+          name: clusterName,
+          cases: [
+            ...cluster.cases,
+            {
+              ...person,
+              id: person.id,
+              type: "Person",
+              label: person.name,
+              group: person.status
+            }
+          ],
+          relations: [
+            ...cluster.relations,
+            {
+              from: clusterName,
+              to: person.id
+            }
+          ]
+        };
+      }
+      return cluster;
+    });
+
+    setClusters(newClusters);
+  };
+
   return (
     <>
       <ClusterHead toggleSuspectForm={toggleSuspectForm} />
@@ -113,7 +143,10 @@ const Clusters = props => {
           : null}
       </Accordion>
       {isSuspectFormOpen ? (
-        <CreateSuspectForm onClose={toggleSuspectForm} />
+        <SuspectForm
+          addPersonToCluster={addPersonToCluster}
+          onClose={toggleSuspectForm}
+        />
       ) : null}
     </>
   );

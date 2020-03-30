@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bulma": "^0.8.0",
+    "formik": "^2.1.4",
     "grommet": "^2.11.3",
     "lodash": "^4.17.15",
     "neo4j-driver": "^4.0.2",
@@ -20,8 +21,8 @@
     "react-graph-vis": "^1.0.5",
     "react-helmet": "^5.2.1",
     "react-scripts": "3.4.0",
-    "styled-components": "^5.0.1",
     "react-tabs": "^3.1.0",
+    "styled-components": "^5.0.1",
     "uuid": "^7.0.2",
     "vis-network": "^7.4.0"
   },
