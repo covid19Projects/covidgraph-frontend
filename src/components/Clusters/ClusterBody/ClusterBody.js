@@ -30,7 +30,9 @@ const ClusterBody = props => {
   return hasData ? (
     <div className="cluster-body-container">
       <div className="cases-info-container">
-        <CasesContainer cases={cluster.cases} />
+        <CasesContainer
+          cases={cluster.cases.filter(n => n.id !== cluster.name)}
+        />
       </div>
       <div className="network-graph-container">
         <Graph graph={graph} options={options} />;

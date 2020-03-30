@@ -250,6 +250,26 @@ const Clusters = props => {
       .catch(console.error);
   }, []);
 
+  // const exampleCluster = {
+  //   name: "test test",
+  //   cases: [
+  //     {
+  //       id: 1,
+  //       label: "welp"
+  //     },
+  //     {
+  //       id: 2,
+  //       label: "welp2"
+  //     }
+  //   ],
+  //   relations: [
+  //     {
+  //       from: 1,
+  //       to: 2
+  //     }
+  //   ]
+  // };
+
   return (
     <Accordion allowZeroExpanded={true}>
       <ClusterAccordionItem key={cluster.name} cluster={cluster} />
