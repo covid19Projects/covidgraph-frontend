@@ -4,7 +4,7 @@ async function getSession() {
   try {
     const driver = neo4j.driver(
       "bolt://localhost:7687/neo4j",
-      neo4j.auth.basic("neo4j", "pass1234")
+      neo4j.auth.basic("neo4j", "1234")
     );
     return {
       session: driver.session(),
@@ -55,7 +55,7 @@ export const createPersonAlongWithNewCluster = async (person, cluster) => {
 
 export const editAPerson = async person => {
   const command = `
-      MATCH(p:Person{id:"${person.id}"}) SET p.age="${person.age}", p.status="${person.status}", p.location="${person.location}" p.Notes="${person.notes}" RETURN p
+      MATCH(p:Person{id:"${person.id}"}) SET p.age="${person.age}", p.status="${person.status}", p.location="${person.location}", p.Notes="${person.notes}" RETURN p
       `;
   return runCypherQuery(command);
 };

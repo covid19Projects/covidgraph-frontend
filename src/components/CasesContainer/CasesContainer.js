@@ -46,7 +46,7 @@ const CasesContainer = props => {
       <div className="cases-header">
         <label className="cases-label">CASES</label>
         <div>
-          <Button onClick={toggleSuspectForm}>
+          <Button onClick={() => toggleSuspectForm()}>
             <img src={plus} alt="" />
           </Button>
           <span className="cases-count-container">
@@ -60,6 +60,7 @@ const CasesContainer = props => {
         casesDetails={casesDetails}
         toggleCaseDetails={toggleCaseDetails}
         clusterName={clusterName}
+        toggleSuspectForm={toggleSuspectForm}
       />
     </div>
   );

@@ -53,7 +53,7 @@ const ClusterBody = props => {
       },
       Untracked: {
         shape: "image",
-        image: setUrl(trackedImage)
+        image: setUrl(unTrackedImage)
       },
       Cured: {
         shape: "image",

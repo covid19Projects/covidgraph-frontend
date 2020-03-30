@@ -17,11 +17,18 @@ import ClusterHead from "./ClusterHead/ClusterHead";
 import SuspectForm from "../SuspectForm/SuspectForm";
 
 import { mapResultToGraph } from "./../../mappers";
+import CasesListContainer from "../CasesListContainer/CasesListContainer";
 
 const Clusters = props => {
   const [clusters, setClusters] = useState([]);
   const [isSuspectFormOpen, setIsSuspectFormOpen] = useState(false);
-  const toggleSuspectForm = () => setIsSuspectFormOpen(!isSuspectFormOpen);
+  const [editSuspectFormData, setEditSuspectFormData] = useState(false);
+  const toggleSuspectForm = caseToEdit => {
+    if (caseToEdit) {
+      setEditSuspectFormData(caseToEdit);
+    }
+    setIsSuspectFormOpen(!isSuspectFormOpen);
+  };
   // const onCreateCluster = async () =>
   //   runCypherQuery(createClusterCommand("Delhi"));
 
@@ -124,7 +131,31 @@ const Clusters = props => {
       }
       return cluster;
     });
+    setClusters(newClusters);
+  };
 
+  const updatePersonInCluster = (clusterName, person) => {
+    const newClusters = clusters.map(cluster => {
+      if (cluster.name === clusterName) {
+        const filteredCases = cluster.cases.filter(c => c.id !== person.id);
+
+        return {
+          name: clusterName,
+          cases: [
+            ...filteredCases,
+            {
+              ...person,
+              id: person.id,
+              type: "Person",
+              label: person.name,
+              group: person.status
+            }
+          ],
+          relations: cluster.relations
+        };
+      }
+      return cluster;
+    });
     setClusters(newClusters);
   };
 
@@ -146,6 +177,9 @@ const Clusters = props => {
         <SuspectForm
           addPersonToCluster={addPersonToCluster}
           onClose={toggleSuspectForm}
+          caseToEdit={editSuspectFormData}
+          updatePersonInCluster={updatePersonInCluster}
+          setEditSuspectFormData={setEditSuspectFormData}
         />
       ) : null}
     </>

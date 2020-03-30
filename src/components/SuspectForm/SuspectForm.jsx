@@ -9,47 +9,45 @@ import {
   Select,
   TextInput
 } from "grommet";
-import { createPersonWithExistingCluster } from "../../db.js";
+import { createPersonWithExistingCluster, editAPerson } from "../../db.js";
 import "./SuspectForm.scss";
 import { Formik } from "formik";
 
-const SuspectForm = ({ caseToEdit, onClose, addPersonToCluster }) => {
+const SuspectForm = ({
+  caseToEdit,
+  onClose,
+  addPersonToCluster,
+  updatePersonInCluster,
+  setEditSuspectFormData
+}) => {
   const defaultCase = {};
   const isEditing = !!caseToEdit;
-  const headingText = isEditing
-    ? `Edit Suspect: ${caseToEdit.name}, Case ID: ${caseToEdit.id}`
-    : "Add Suspect";
+  const headingText = isEditing ? `Edit Suspect` : "Add Suspect";
+  const submitButtonLabel = isEditing ? "Save" : "Add";
+  console.log("EDITING PERSON", caseToEdit);
 
   return (
     <Formik
       initialValues={isEditing ? caseToEdit : defaultCase}
       onSubmit={async (values, { setSubmitting }) => {
-        const {
-          caseId: id,
+        const { id, name, cluster, age, status, location, notes } = values;
+
+        const updatedPerson = {
+          id,
           name,
-          cluster,
-          contactedWith,
           age,
           status,
           location,
-          governmentIdType,
-          governmentId,
           notes
-        } = values;
-
+        };
+        console.log(cluster);
         if (isEditing) {
-          console.log("do something");
+          await editAPerson(updatedPerson);
+          updatePersonInCluster(cluster, updatedPerson);
+          setEditSuspectFormData(false);
         } else if (!isEditing) {
-          const newPerson = {
-            id,
-            name,
-            age,
-            status,
-            location,
-            notes
-          };
-          await createPersonWithExistingCluster(cluster, newPerson);
-          addPersonToCluster(cluster, newPerson);
+          await createPersonWithExistingCluster(cluster, updatedPerson);
+          addPersonToCluster(cluster, updatedPerson);
         }
         setSubmitting(false);
         onClose();
@@ -85,9 +83,9 @@ const SuspectForm = ({ caseToEdit, onClose, addPersonToCluster }) => {
                   required
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.caseId}
-                  className="caseId"
-                  id="caseId"
+                  value={values.id}
+                  className="id"
+                  id="id"
                 />
               </FormField>
               <FormField
@@ -154,7 +152,7 @@ const SuspectForm = ({ caseToEdit, onClose, addPersonToCluster }) => {
                 >
                   <Select
                     options={[
-                      "UnTracked",
+                      "Untracked",
                       "Tracked",
                       "Tested",
                       "Positive",
@@ -229,7 +227,12 @@ const SuspectForm = ({ caseToEdit, onClose, addPersonToCluster }) => {
               </FormField>
               <div className="case-create-dialog-footer">
                 <Button
-                  onClick={onClose}
+                  onClick={() => {
+                    onClose();
+                    if (isEditing) {
+                      setEditSuspectFormData(false);
+                    }
+                  }}
                   label={"Cancel"}
                   className="cancel-button"
                 />
@@ -237,7 +240,7 @@ const SuspectForm = ({ caseToEdit, onClose, addPersonToCluster }) => {
                   type="submit"
                   disabled={isSubmitting}
                   className="add-button"
-                  label={"Add"}
+                  label={submitButtonLabel}
                 />
               </div>
             </Form>

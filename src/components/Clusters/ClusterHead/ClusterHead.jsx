@@ -26,17 +26,19 @@ const ClusterHead = ({ toggleSuspectForm }) => {
         <button className="icon">
           <img className="image" src={menu} />
         </button>
-        <button className="icon" onClick={toggleSuspectForm}>
+        <button className="icon" onClick={() => toggleSuspectForm()}>
           <img className="image" src={add} />
         </button>
         <DropButton
           className="icon"
           label="Create Cluster"
           // open={open}
-          onOpen={() => {setIsCreateClusterPopupOpen(true)}}
+          onOpen={() => {
+            setIsCreateClusterPopupOpen(true);
+          }}
           onClose={toggleIsCreateClusterPopupOpen}
           dropContent={
-              isCreateClusterPopupOpen && (
+            isCreateClusterPopupOpen && (
               <CreateClusterContent onClose={toggleIsCreateClusterPopupOpen} />
             )
           }
