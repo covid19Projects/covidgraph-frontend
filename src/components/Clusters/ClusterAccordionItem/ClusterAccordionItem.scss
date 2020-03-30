@@ -5,21 +5,47 @@
   margin: 20px 0;
 
   .accordion__heading {
-    padding: 15px;
     position: relative;
     user-select: none;
+    cursor: pointer;
 
     .accordion__button {
+      padding: 15px;
+      transition: all 300ms;
 
       &:focus {
         outline: none;
       }
 
       &:after {
+        @keyframes rotateIconOpen {
+          0% {
+            transform: rotate(180deg);
+          }
+          100% {
+            transform: rotate(0deg);
+          }
+        }
+
         content: url('../../../assets/path.svg');
         position: absolute;
         top: 15px;
         right: 20px;
+        animation: 300ms ease-out 0s 1 rotateIconOpen;
+      }
+
+      &[aria-expanded=true]:after {
+        @keyframes rotateIcon {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(180deg);
+          }
+        }
+
+        animation: 300ms ease-out 0s 1 rotateIcon;
+        transform: rotate(180deg);
       }
     }
   }
