@@ -13,7 +13,6 @@ class CreateClusterContent extends Component {
         this.onChangeText = this.onChangeText.bind(this);
         this.onCreateCluster = this.onCreateCluster.bind(this);
         this.setStateValue = this.setStateValue.bind(this);
-
     }
 
     onChangeText(event)  {

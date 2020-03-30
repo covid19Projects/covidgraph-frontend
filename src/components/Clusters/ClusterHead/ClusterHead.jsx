@@ -33,10 +33,10 @@ const ClusterHead = ({ toggleSuspectForm }) => {
           className="icon"
           label="Create Cluster"
           // open={open}
-          onOpen={toggleIsCreateClusterPopupOpen}
+          onOpen={() => {setIsCreateClusterPopupOpen(true)}}
           onClose={toggleIsCreateClusterPopupOpen}
           dropContent={
-            toggleIsCreateClusterPopupOpen && (
+              isCreateClusterPopupOpen && (
               <CreateClusterContent onClose={toggleIsCreateClusterPopupOpen} />
             )
           }

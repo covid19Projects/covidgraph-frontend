@@ -13,7 +13,12 @@ import { createPersonWithExistingCluster } from "../../db.js";
 import "./CreateSuspectForm.scss";
 
 class CreateSuspectForm extends Component {
-  setCluster = cluster => {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {clusterName: props.clusterName, contactedWith: props.contactedWith}
+    }
+
+    setCluster = cluster => {
     this.setState({ cluster: cluster.value });
   };
 
@@ -125,10 +130,10 @@ class CreateSuspectForm extends Component {
             </FormField>
             <div className="inline mt-15">
               <FormField label={"Cluster"} className="case-create-dialog-label">
-                <Select
-                  placeholder="Select"
+                <TextInput
+                  value={this.state.clusterName}
+                  placeholder="ex: Telangana"
                   required
-                  options={["Andhra Pradesh", "Telangana", "Delhi"]}
                   onChange={this.setCluster}
                   className="clusterInput"
                   id="clusterName"
@@ -138,13 +143,13 @@ class CreateSuspectForm extends Component {
                 label={"Contacted With"}
                 className="case-create-dialog-label"
               >
-                <Select
-                  options={[]}
+                <TextInput
+                  value={this.state.contactedWith}
                   required
                   onChange={this.setContactedWith}
                   closeOnChange={false}
                   multiple
-                  placeholder="Select"
+                  placeholder="ex: P12"
                   className="contactedWith"
                   id="contactsInput"
                 />

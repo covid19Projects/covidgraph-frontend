@@ -74,6 +74,7 @@ const ClusterBody = props => {
         <CasesContainer
           toggleSuspectForm={toggleSuspectForm}
           cases={cluster.cases.filter(n => n.id !== cluster.name)}
+          clusterName={cluster.name}
         />
       </div>
       <div className="network-graph-container">

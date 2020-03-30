@@ -4,7 +4,7 @@ async function getSession() {
   try {
     const driver = neo4j.driver(
       "bolt://localhost:7687/neo4j",
-      neo4j.auth.basic("neo4j", "1234")
+      neo4j.auth.basic("neo4j", "pass1234")
     );
     return {
       session: driver.session(),
