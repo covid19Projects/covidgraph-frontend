@@ -1,19 +1,15 @@
 .cluster-body-container {
-  height: 350px;
+  width: 100%;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 0.25fr auto;
+  grid-template-rows: 350px;
 
   .cases-info-container {
-    width: 25%;
-    min-width: 250px;
-    float: left;
-    border-top: 1px solid #cbcbd6;;
+    border-top: 1px solid #cbcbd6;
     border-right: 1px solid #cbcbd6;
-    height: 100%;
   }
 
   .network-graph-container {
-    width: 75%;
-    overflow: hidden;
-    height: 100%;
   }
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Accordion } from "react-accessible-accordion";
 import ClusterAccordionItem from "./ClusterAccordionItem/ClusterAccordionItem";
-
+import Graph from "react-graph-vis";
 import {
   createClusterCommand,
   runCypherQuery,
@@ -14,6 +14,21 @@ import {
 } from "./../../db";
 
 import { mapResultToGraph } from "./../../mappers";
+const options = {
+  edges: {
+    color: "#000000",
+    arrows: {
+      to: {
+        enabled: true
+      }
+    },
+    dashes: true
+  },
+  height: "500px",
+  nodes: {
+    shape: "circle"
+  }
+};
 const Clusters = props => {
   const clusters = [
     {
@@ -173,7 +188,7 @@ const Clusters = props => {
   const [cluster, setCluster] = useState({
     cases: [],
     relations: [],
-    lol: "alice"
+    name: ""
   });
 
   // const onCreateCluster = async () =>
@@ -237,11 +252,7 @@ const Clusters = props => {
 
   return (
     <Accordion allowZeroExpanded={true}>
-      {cluster
-        ? [cluster].map(cluster => (
-            <ClusterAccordionItem key={cluster.name} cluster={cluster} />
-          ))
-        : null}
+      <ClusterAccordionItem key={cluster.name} cluster={cluster} />
     </Accordion>
   );
 };

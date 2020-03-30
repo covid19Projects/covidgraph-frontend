@@ -11,7 +11,6 @@ import "./ClusterAccordionItem.scss";
 
 const ClusterAccordionItem = props => {
   const { cluster } = props;
-
   return (
     <AccordionItem className="cluster-accordion-item">
       <AccordionItemHeading>
