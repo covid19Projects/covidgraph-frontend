@@ -32,7 +32,7 @@ export function mapResultToGraph({ records }) {
   });
 
   return {
-    nodes: Array.from(nodes).map(JSON.parse),
-    edges: Array.from(edges).map(JSON.parse)
+    cases: Array.from(nodes).map(JSON.parse),
+    relations: Array.from(edges).map(JSON.parse)
   };
 }

@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { Router } from "@reach/router";
 import { Grommet } from "grommet";
 import "./App.css";
-import Home from "./pages/Home.jsx";
+import Home from "./pages/Home";
 import Layout from "./components/Layout";
 
 function App() {
