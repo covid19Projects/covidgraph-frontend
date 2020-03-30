@@ -6,7 +6,7 @@ import CasesListContainer from "../CasesListContainer/CasesListContainer";
 import { Button } from "grommet";
 
 const CasesContainer = props => {
-  const { cases, toggleSuspectForm } = props;
+  const { cases, toggleSuspectForm, clusterName } = props;
 
   const [casesDetails, setCasesDetails] = useState(null);
 
@@ -59,6 +59,7 @@ const CasesContainer = props => {
       <CasesListContainer
         casesDetails={casesDetails}
         toggleCaseDetails={toggleCaseDetails}
+        clusterName={clusterName}
       />
     </div>
   );
