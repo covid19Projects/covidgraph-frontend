@@ -49,6 +49,7 @@ class CreateSuspectForm extends Component {
     };
 
     createSuspect=()=> {
+        this.props.onClose();
         let{caseId,name,cluster,contactedWith,suspectAge:age,gender,status,location,governmentIdType,governmentId,notes}= this.state;
         const suspect = {
             id:caseId,
@@ -181,7 +182,12 @@ class CreateSuspectForm extends Component {
                         </FormField>
                         <Button
                             onClick={this.createSuspect}
-                            label={"Submit"}/>
+                            label={"Submit"}
+                        />
+                        <Button
+                            onClick={this.props.onClose}
+                            label={"Cancel"}
+                        />
                     </Form>
                 </Box>
             </Layer>
