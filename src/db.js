@@ -74,7 +74,7 @@ export const getClusterData = async clusterName => {
   return runCypherQuery(command);
 };
 
-export const getAllClusters = async clusterName => {
+export const getAllClustersData = async clusterName => {
   const command = `
       MATCH (c:Cluster) RETURN c.name
       `;
