@@ -28,7 +28,7 @@ class ClusterHead extends Component {
                         // open={open}
                         onOpen={() =>this.setState({showCreatePopUp: true})}
                         onClose={() =>this.setState({showCreatePopUp: false})}
-                        dropContent={<CreateClusterContent onClose={() =>this.setState({showCreatePopUp: false})} />}
+                        dropContent={this.state.showCreatePopUp && <CreateClusterContent onClose={() =>this.setState({showCreatePopUp: false})} />}
                         dropProps={{ align: { top: "bottom" } }}
                     />
                 </div>

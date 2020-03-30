@@ -1,3 +1,5 @@
+
+
 .create-content{
   .box {
     .form {
@@ -6,4 +8,27 @@
       }
     }
   }
+}
+.buttons-footer {
+    display: flex;
+}
+
+.exrnbV {
+    right: 150px;
+    width: 350px;
+}
+
+div.exrnb {
+    right: 150px;
+    width: 350px;
+    > .create-content{
+        .box {
+            border-radius: 12px;
+          .form {
+            .submit-btn {
+              margin-left: 34%;
+            }
+          }
+        }
+      }
 }
