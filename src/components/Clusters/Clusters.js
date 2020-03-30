@@ -10,7 +10,8 @@ import {
   createPersonAlongWithNewCluster,
   editAPerson,
   deleteAPerson,
-  getClusterData
+  getClusterData,
+  getAllClustersData
 } from "./../../db";
 
 import { mapResultToGraph } from "./../../mappers";
@@ -30,7 +31,7 @@ const options = {
   }
 };
 const Clusters = props => {
-  const clusters = [
+  const exampleClusters = [
     {
       place: "Visakhapatnam",
       cases: [
@@ -185,11 +186,7 @@ const Clusters = props => {
     }
   ];
 
-  const [cluster, setCluster] = useState({
-    cases: [],
-    relations: [],
-    name: ""
-  });
+  const [clusters, setClusters] = useState([]);
 
   // const onCreateCluster = async () =>
   //   runCypherQuery(createClusterCommand("Delhi"));
@@ -240,12 +237,29 @@ const Clusters = props => {
   //   });
 
   useEffect(() => {
-    getClusterData("Delhi")
-      .then(rawData => {
-        setCluster({
-          name: "Delhi",
-          ...mapResultToGraph(rawData)
-        });
+    const getData = async () => {
+      let clusters = [];
+      const allClustersData = await getAllClustersData();
+      const { records } = allClustersData;
+
+      records.forEach(
+        ({ _fields }) => _fields && _fields.length && clusters.push(_fields[0])
+      );
+
+      clusters = clusters.map(async cluster => {
+        const clusterData = await getClusterData(cluster);
+        return {
+          name: cluster,
+          ...mapResultToGraph(clusterData)
+        };
+      });
+
+      return Promise.all(clusters);
+    };
+
+    getData()
+      .then(clusters => {
+        setClusters(clusters);
       })
       .catch(console.error);
   }, []);
@@ -272,7 +286,11 @@ const Clusters = props => {
 
   return (
     <Accordion allowZeroExpanded={true}>
-      <ClusterAccordionItem key={cluster.name} cluster={cluster} />
+      {clusters.length
+        ? clusters.map(cluster => (
+            <ClusterAccordionItem key={cluster.name} cluster={cluster} />
+          ))
+        : null}
     </Accordion>
   );
 };

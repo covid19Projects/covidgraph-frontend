@@ -65,7 +65,12 @@ class CreateClusterContent extends Component {
                         />
                     </FormField>
                     <FormField label="Cluster Name">
-                        <TextInput plain placeholder="ex: Vijayawada" onChange={this.onChangeText} value={this.state.value}/>
+                        <TextInput
+                            value={this.state.clusterName}
+                            plain
+                            placeholder="ex: Vijayawada"
+                            onChange={(event) => {this.setState({clusterName: event.target.value})}}
+                        />
                     </FormField>
                     <div className="buttons-footer">
                         <Button onClick={() => this.props.onClose()} label="Cancel" />
