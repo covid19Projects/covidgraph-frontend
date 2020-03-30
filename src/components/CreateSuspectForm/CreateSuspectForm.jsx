@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Box, Button, Form, FormField, Header, Layer, Select, TextInput} from "grommet";
+import {createPersonWithExistingCluster} from "../../db.js"
 
 class CreateSuspectForm extends Component {
     setCluster = (cluster) => {
@@ -18,9 +19,13 @@ class CreateSuspectForm extends Component {
         this.setState({caseId:event.target.value})
     };
 
-    setGender=(gender) => {
-        this.setState({gender:gender.value})
+    setName = (event) => {
+        this.setState({name:event.target.value})
     };
+
+//     setGender=(gender) => {
+//         this.setState({gender:gender.value})
+//     };
 
     setLocation=(location)=> {
         this.setState({location:location.value})
@@ -44,21 +49,18 @@ class CreateSuspectForm extends Component {
     };
 
     createSuspect=()=> {
-        let{caseId,cluster,contactedWith,suspectAge:age,gender,status,location,governmentIdType,governmentId,notes}= this.state;
+        let{caseId,name,cluster,contactedWith,suspectAge:age,gender,status,location,governmentIdType,governmentId,notes}= this.state;
         const suspect = {
-            caseId:caseId,
-            cluster:cluster,
-            contactedWith:contactedWith,
+            id:caseId,
+            name:name,
             age:age,
-            gender:gender,
             status:status,
             location:location,
             governmentIdType:governmentIdType,
             governmentId:governmentId,
             notes:notes
         };
-        console.log(suspect);
-        return undefined;
+        return createPersonWithExistingCluster(cluster, suspect);
     };
 
     render() {
@@ -87,19 +89,27 @@ class CreateSuspectForm extends Component {
                                 id="caseId"
                             />
                         </FormField>
+                        <FormField label={"Name"}>
+                            <TextInput
+                                required
+                                onChange={this.setName}
+                                className="name"
+                                id="name"
+                            />
+                        </FormField>
                         <div>
                             <FormField label={"Cluster"}>
                                 <Select
                                     placeholder="Select"
                                     required
-                                    options={["Andhra Pradesh", "Telengana", "Delhi"]}
+                                    options={["Andhra Pradesh", "Telangana", "Delhi",]}
                                     onChange={this.setCluster}
                                     className="clusterInput"
                                     id="clusterName"/>
                             </FormField>
                             <FormField label={"Contacted With"}>
                                 <Select
-                                    options={["P100", "P001"]}
+                                    options={[]}
                                     required
                                     onChange={this.setContactedWith}
                                     closeOnChange={false}
@@ -118,14 +128,14 @@ class CreateSuspectForm extends Component {
                                     onChange={this.setSuspectAge}
                                     id="ageInput"/>
                             </FormField>
-                            <FormField label={"Gender"}>
-                                <Select
-                                    options={["Male", "Female", "Transgender","Prefer Not To Mention"]}
-                                    onChange={this.setGender}
-                                    className="gender"
-                                    required
-                                    id="genderInput"/>
-                            </FormField>
+{/*                             <FormField label={"Gender"}> */}
+{/*                                 <Select */}
+{/*                                     options={["Male", "Female", "Transgender","Prefer Not To Mention"]} */}
+{/*                                     onChange={this.setGender} */}
+{/*                                     className="gender" */}
+{/*                                     required */}
+{/*                                     id="genderInput"/> */}
+{/*                             </FormField> */}
                             <FormField label={"Status"}>
                                 <Select
                                     options={["Tracked", "Not Tracked","Being Tracked"]}

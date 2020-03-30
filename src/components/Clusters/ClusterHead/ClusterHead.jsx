@@ -21,7 +21,7 @@ class ClusterHead extends Component {
                 <div className="controls">
                     <button className="icon"><img className="image" src={search}/></button>
                     <button className="icon"><img className="image" src={menu}/></button>
-                    <button className="icon"><img className="image" src={add}/></button>
+                    <button className="icon" onClick={this.props.showAddSuspectForm}><img className="image" src={add}/></button>
                     <DropButton
                         className="icon"
                         label="Create Cluster"

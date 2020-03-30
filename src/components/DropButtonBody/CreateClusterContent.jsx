@@ -7,7 +7,7 @@ class CreateClusterContent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            value: '',
+            clusterName: '',
             stateValue: ''
         }
         this.onChangeText = this.onChangeText.bind(this);
@@ -18,17 +18,16 @@ class CreateClusterContent extends Component {
 
     onChangeText(event)  {
     console.log(event.target.value);
-    this.setState({value: event.target.value});
+    this.setState({clusterName: event.target.value});
     }
 
     setStateValue(option) {
       this.setState({stateValue: option});
     }
 
-    // const [value, onChangeText] = React.useState();
 
     async onCreateCluster() {
-      const name = await runCypherQuery(createClusterCommand(this.state.value));
+      const name = await runCypherQuery(createClusterCommand(this.state.clusterName));
       //if (await name) {
         this.props.onClose();
       //}
