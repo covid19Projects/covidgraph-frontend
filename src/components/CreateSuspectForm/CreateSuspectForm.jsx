@@ -50,6 +50,7 @@ class CreateSuspectForm extends Component {
     };
 
     createSuspect=()=> {
+        this.props.onClose();
         let{caseId,name,cluster,contactedWith,suspectAge:age,gender,status,location,governmentIdType,governmentId,notes}= this.state;
         const suspect = {
             id:caseId,
@@ -182,7 +183,13 @@ class CreateSuspectForm extends Component {
                         <div className="case-create-dialog-footer">
                             <Button onClick={this.createSuspect} className="add-button"
                                 label={"Add"}/>
+                            <Button
+                                onClick={this.props.onClose}
+                                label={"Cancel"}
+                            />
                         </div>
+
+
                     </Form>
                 </Box>
             </Layer>

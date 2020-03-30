@@ -11,11 +11,11 @@ class TabHeader extends Component {
     constructor(props) {
         super(props);
         this.state={shouldShowForm:false};
-        this.showAddSuspectForm = this.showAddSuspectForm.bind(this)
+        this.toggleAddSuspectForm = this.toggleAddSuspectForm.bind(this)
     }
 
-    showAddSuspectForm() {
-        this.setState({shouldShowForm: true})
+    toggleAddSuspectForm() {
+        this.setState({shouldShowForm: !this.state.shouldShowForm})
     }
     render() {
     return (
@@ -37,9 +37,9 @@ class TabHeader extends Component {
             </TabPanel>
             <TabPanel>
               <div className="clusters-tab-panel">
-                <ClusterHead showAddSuspectForm={this.showAddSuspectForm}/>
+                <ClusterHead showAddSuspectForm={this.toggleAddSuspectForm}/>
                 <Clusters />
-                {this.state.shouldShowForm ? <CreateSuspectForm />: null}
+                {this.state.shouldShowForm ? <CreateSuspectForm onClose={this.toggleAddSuspectForm}/>: null}
               </div>
             </TabPanel>
           </div>
