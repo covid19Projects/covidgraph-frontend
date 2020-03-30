@@ -19,7 +19,7 @@ class TabHeader extends Component {
             </TabList>
             <div className="helpline">
               <p>Central Helpline Numbers:</p>
-              <p>987654676</p>
+              <p>+91-11-23978046 or 1075</p>
             </div>
           </div>
           <div className="tab-panels">

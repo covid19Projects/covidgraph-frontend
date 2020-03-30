@@ -1,0 +1,39 @@
+.cases-search {
+  display: flex;
+  height: 48px;
+  border-radius: 5px;
+  border: solid 1px #babfc7;
+  padding: 13px;
+  align-items: center;
+  margin: auto 20px;
+
+  .image-placeholder {
+    height: 16px;
+    width: 16px;
+
+    img {
+      height: 16px;
+    }
+  }
+
+  input {
+    width: 100%;
+    box-shadow: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    border: 0 solid #5468ff;
+    padding: 13px;
+  }
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.outline-none {
+  outline: 0;
+}
