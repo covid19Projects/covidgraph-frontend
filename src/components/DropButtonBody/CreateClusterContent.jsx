@@ -9,8 +9,8 @@ class CreateClusterContent extends Component {
 
     render(){
         return (
-            <div>
-                <Box
+            <div className="create-content">
+                <Box className="box"
                     width="large"
                     direction="row"
                     align="center"
@@ -28,7 +28,7 @@ class CreateClusterContent extends Component {
                         }
                     }
                 >
-                <Form>
+                <Form className="form">
                     <FormField label="Select a Cluster Title">
                         <Select
                             options={['AndhraPradesh', 'Telangana', 'Punjab', 'Kerala']}
@@ -41,7 +41,7 @@ class CreateClusterContent extends Component {
                         <TextInput plain placeholder="ex: Vijayawada" />
                     </FormField>
                     <Button type="submit"  label="Cancel" />
-                    <Button type="submit" primary label="Submit" />
+                    <Button className="submit-btn" type="submit" primary label="Submit" />
                 </Form>
             </Box>
             </div>

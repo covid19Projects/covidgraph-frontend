@@ -4,7 +4,7 @@ import menu from "../../../assets/covid-menu.svg";
 import add from "../../../assets/covid-add.svg";
 import './ClusterHead.scss';
 import CreateClusterContent from "../../DropButtonBody/CreateClusterContent.jsx";
-import { Grommet, Box, Button, DropButton, Heading, Text } from "grommet";
+import { DropButton } from "grommet";
 
 class ClusterHead extends Component {
     constructor(props) {
