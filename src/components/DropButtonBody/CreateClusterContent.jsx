@@ -5,6 +5,7 @@ import "./CreateClusterContent.scss"
 class CreateClusterContent extends Component {
     constructor(props){
         super(props);
+        this.state = {clusterTitle: '', clusterName: ''};
     }
 
     render(){
@@ -32,13 +33,18 @@ class CreateClusterContent extends Component {
                     <FormField label="Select a Cluster Title">
                         <Select
                             options={['AndhraPradesh', 'Telangana', 'Punjab', 'Kerala']}
-                            value={""}
+                            value={this.state.clusterTitle}
                             placeholder={"ex: State(AP)"}
-                            onChange={({ option }) => {}}
+                            onChange={({ option }) => {this.setState({clusterTitle: option})}}
                         />
                     </FormField>
                     <FormField label="Cluster Name">
-                        <TextInput plain placeholder="ex: Vijayawada" />
+                        <TextInput
+                            value={this.state.clusterName}
+                            plain
+                            placeholder="ex: Vijayawada"
+                            onChange={(event) => {this.setState({clusterName: event.target.value})}}
+                        />
                     </FormField>
                     <Button type="submit"  label="Cancel" />
                     <Button className="submit-btn" type="submit" primary label="Submit" />

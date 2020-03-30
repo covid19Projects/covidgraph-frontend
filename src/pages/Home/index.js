@@ -4,7 +4,6 @@ import { Button } from "grommet";
 function Home() {
   return (
     <div className="homepage">
-      <h1>Home</h1>
       {/* <Button onClick={onCreateCluster}>Create Cluster</Button>
       <Button onClick={onCreatePersonWithExistingCluster}>Create person</Button>
       <Button onClick={onCreatePersonRelatedToAnotherPerson}>
