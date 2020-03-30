@@ -10,6 +10,7 @@ export function mapResultToGraph({ records }) {
             id: startNode.properties.name,
             type: startNode.labels[0],
             label: startNode.properties.name,
+            group: startNode.properties.status,
             ...startNode.properties
           };
 
@@ -17,6 +18,7 @@ export function mapResultToGraph({ records }) {
             id: endNode.properties.name,
             type: endNode.labels[0],
             label: endNode.properties.name,
+            group: endNode.properties.status,
             ...endNode.properties
           };
 
