@@ -67,6 +67,38 @@ const Clusters = props => {
       .catch(console.error);
   }, []);
 
+  const addPersonToPerson = (clusterName, existingPerson, person) => {
+  console.log(clusters);
+  console.log(existingPerson);
+    const newClusters = clusters.map(cluster => {
+          if (cluster.name === clusterName) {
+            return {
+              name: clusterName,
+              cases: [
+                ...cluster.cases,
+                {
+                  ...person,
+                  id: person.id,
+                  type: "Person",
+                  label: person.name,
+                  group: person.status
+                }
+              ],
+              relations: [
+                ...cluster.relations,
+                {
+                  from: existingPerson,
+                  to: person.id
+                }
+              ]
+            };
+          }
+          return cluster;
+        });
+        console.log(newClusters);
+        setClusters(newClusters);
+  };
+
   const addPersonToCluster = (clusterName, person) => {
     const newClusters = clusters.map(cluster => {
       if (cluster.name === clusterName) {
@@ -138,6 +170,7 @@ const Clusters = props => {
       {isSuspectFormOpen ? (
         <SuspectForm
           addPersonToCluster={addPersonToCluster}
+          addPersonToPerson={addPersonToPerson}
           onClose={toggleSuspectForm}
           caseToEdit={editSuspectFormData}
           updatePersonInCluster={updatePersonInCluster}

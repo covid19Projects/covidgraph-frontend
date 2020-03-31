@@ -9,7 +9,7 @@ import {
   Select,
   TextInput
 } from "grommet";
-import { createPersonWithExistingCluster, editAPerson } from "../../db.js";
+import { createPersonWithExistingCluster, editAPerson, createPersonRelatedToAnotherPerson } from "../../db.js";
 import "./SuspectForm.scss";
 import { Formik } from "formik";
 
@@ -17,11 +17,15 @@ const SuspectForm = ({
   caseToEdit,
   onClose,
   addPersonToCluster,
+  addPersonToPerson,
   updatePersonInCluster,
   setEditSuspectFormData
 }) => {
+  const isEditing = !!caseToEdit.id;
   const defaultCase = {};
-  const isEditing = !!caseToEdit;
+  if (caseToEdit.contactedWith)  defaultCase.contactedWith = caseToEdit.contactedWith.id;
+  if (caseToEdit.cluster) defaultCase.cluster = caseToEdit.cluster;
+
   const headingText = isEditing ? `Edit Suspect` : "Add Suspect";
   const submitButtonLabel = isEditing ? "Save" : "Add";
   console.log("EDITING PERSON", caseToEdit);
@@ -30,7 +34,7 @@ const SuspectForm = ({
     <Formik
       initialValues={isEditing ? caseToEdit : defaultCase}
       onSubmit={async (values, { setSubmitting }) => {
-        const { id, name, cluster, age, status, location, notes } = values;
+        const { id, name, cluster, age, status, location, notes, contactedWith } = values;
 
         const updatedPerson = {
           id,
@@ -38,7 +42,8 @@ const SuspectForm = ({
           age,
           status,
           location,
-          notes
+          notes,
+          contactedWith
         };
         console.log(cluster);
         if (isEditing) {
@@ -46,8 +51,13 @@ const SuspectForm = ({
           updatePersonInCluster(cluster, updatedPerson);
           setEditSuspectFormData(false);
         } else if (!isEditing) {
+          if (updatedPerson.contactedWith) {
+          await createPersonRelatedToAnotherPerson({id: updatedPerson.contactedWith}, updatedPerson);
+          addPersonToPerson(cluster, updatedPerson.contactedWith, updatedPerson);
+          } else {
           await createPersonWithExistingCluster(cluster, updatedPerson);
           addPersonToCluster(cluster, updatedPerson);
+          }
         }
         setSubmitting(false);
         onClose();
@@ -120,19 +130,14 @@ const SuspectForm = ({
                   label={"Contacted With"}
                   className="case-create-dialog-label"
                 >
-                  <Select
-                    options={[]}
-                    onChange={({ value }) =>
-                      setFieldValue("contactWidth", value)
-                    }
-                    onBlur={handleBlur}
-                    values={values.contactedWith}
-                    closeOnChange={false}
-                    multiple
-                    placeholder="Select"
-                    className="contactedWith"
-                    id="contactedWith"
-                  />
+                  <TextInput
+                      className="contacted-with"
+                      //onChange={handleChange}
+                      //onBlur={handleBlur}
+                      value={values.contactedWith}
+                      id="contactedWith"
+                      disabled
+                    />
                 </FormField>
               </div>
               <br />

@@ -31,7 +31,12 @@ const CasesListContainer = ({
                   <span className="case-id">{caseItem.id}</span>
                 </div>
                 <div className="case-header-controls">
-                  <img src={plus} alt="img" />
+                  <img src={plus}
+                  onClick={() => {
+                    const newCaseItem = {contactedWith: caseItem, cluster: clusterName};
+                    toggleSuspectForm(newCaseItem);
+                  }}
+                  alt="img" />
                   <img
                     src={editIcon}
                     onClick={() => {
