@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Box, Button, Form, FormField, Select, TextInput} from "grommet";
 import "./CreateClusterContent.scss"
 import {runCypherQuery, createClusterCommand} from "../../db.js"
+import {addNewCluster} from "../Clusters/Clusters.js"
 
 class CreateClusterContent extends Component {
     constructor(props){
@@ -27,9 +28,9 @@ class CreateClusterContent extends Component {
 
     async onCreateCluster() {
       const name = await runCypherQuery(createClusterCommand(this.state.clusterName));
-      //if (await name) {
-        this.props.onClose();
-      //}
+//       addNewCluster(this.state.clusterName);
+        this.props.updateClustersList(this.state.clusterName);
+      this.props.onClose();
     }
 
     render(){

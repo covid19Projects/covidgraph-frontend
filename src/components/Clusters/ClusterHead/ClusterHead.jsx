@@ -7,7 +7,7 @@ import CreateClusterContent from "../../DropButtonBody/CreateClusterContent.jsx"
 import { DropButton } from "grommet";
 import { useState } from "react";
 
-const ClusterHead = ({ toggleSuspectForm }) => {
+const ClusterHead = ({ toggleSuspectForm, updateClustersList }) => {
   const [isCreateClusterPopupOpen, setIsCreateClusterPopupOpen] = useState(
     false
   );
@@ -39,7 +39,7 @@ const ClusterHead = ({ toggleSuspectForm }) => {
           onClose={toggleIsCreateClusterPopupOpen}
           dropContent={
             isCreateClusterPopupOpen && (
-              <CreateClusterContent onClose={toggleIsCreateClusterPopupOpen} />
+              <CreateClusterContent onClose={toggleIsCreateClusterPopupOpen} updateClustersList={updateClustersList} />
             )
           }
           dropProps={{ align: { top: "bottom" } }}

@@ -29,53 +29,10 @@ const Clusters = props => {
     }
     setIsSuspectFormOpen(!isSuspectFormOpen);
   };
-  // const onCreateCluster = async () =>
-  //   runCypherQuery(createClusterCommand("Delhi"));
 
-  // const onCreatePersonWithExistingCluster = () =>
-  //   createPersonWithExistingCluster("Delhi", {
-  //     name: "P1",
-  //     age: 20,
-  //     status: "Positive",
-  //     location: "Hospitalized",
-  //     notes: "Returned from italy"
-  //   });
-
-  // const onCreatePersonRelatedToAnotherPerson = () =>
-  //   createPersonRelatedToAnotherPerson(
-  //     { name: "P1" },
-  //     {
-  //       name: "P2",
-  //       age: 20,
-  //       status: "Positive",
-  //       location: "Hospitalized",
-  //       notes: "Returned from italy"
-  //     }
-  //   );
-
-  // const onCreatePersonAlongWithNewCluster = () =>
-  //   createPersonAlongWithNewCluster(
-  //     {
-  //       name: "P3",
-  //       age: 24,
-  //       status: "Positive",
-  //       location: "Hospitalized",
-  //       notes: "Returned from USA"
-  //     },
-  //     { name: "Andhra Pradesh" }
-  //   );
-
-  // const onEditAPerson = () =>
-  //   editAPerson({
-  //     name: "P1",
-  //     age: 15,
-  //     notes: "Young suspect"
-  //   });
-
-  // const onDeleteAPerson = () =>
-  //   deleteAPerson({
-  //     name: "P2"
-  //   });
+    const updateClustersList = (clusterName) => {
+      setClusters([...clusters, {name: clusterName, cases: [], relations: []}]);
+    }
 
   useEffect(() => {
     const getData = async () => {
@@ -161,7 +118,7 @@ const Clusters = props => {
 
   return (
     <>
-      <ClusterHead toggleSuspectForm={toggleSuspectForm} />
+      <ClusterHead toggleSuspectForm={toggleSuspectForm} updateClustersList={updateClustersList} />
       <Accordion allowZeroExpanded={true}>
         {clusters.length
           ? clusters.map(cluster => (
