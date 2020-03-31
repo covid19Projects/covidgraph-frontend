@@ -31,7 +31,12 @@ const Clusters = props => {
   };
 
     const updateClustersList = (clusterName) => {
-      setClusters([...clusters, {name: clusterName, cases: [], relations: []}]);
+      setClusters([...clusters, {name: clusterName, cases: [{
+       id: clusterName,
+       type: 'Cluster',
+       label: clusterName,
+       name: clusterName
+      }], relations: []}]);
     }
 
   useEffect(() => {
