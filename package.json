@@ -11,7 +11,7 @@
     "bulma": "^0.8.0",
     "formik": "^2.1.4",
     "grommet": "^2.11.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "neo4j-driver": "^4.0.2",
     "node-sass": "^4.13.1",
     "polished": "^3.5.1",
